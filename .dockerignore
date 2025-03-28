@@ -1,0 +1,30 @@
+# Ignore the virtual environment directory
+venv/
+# Ignore the .env file
+.env
+# Ignore the __pycache__ directory
+__pycache__/
+# Ignore the .pytest_cache directory
+pytest_cache/
+# Ignore the .mypy_cache directory
+.mypy_cache/
+# Ignore the .coverage file
+.coverage
+# Ignore the .coverage.* files
+.coverage.*
+# Ignore the .DS_Store file (macOS)
+.DS_Store
+# Ignore the .idea directory (JetBrains IDEs)
+.idea/
+# Ignore the .vscode directory (Visual Studio Code)
+.vscode/
+# Ignore the .pytest_cache directory (pytest cache)
+pytest_cache/
+# Ignore the .mypy_cache directory (mypy cache)
+.mypy_cache/
+# Ignore the .tox directory (tox virtual environments)
+tox/
+# Ignore the .hypothesis directory (hypothesis cache)
+hypothesis/
+# Ignore the .coverage.* files (coverage reports)
+.coverage.*

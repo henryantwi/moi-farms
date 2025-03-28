@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOI Farms Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for charts -->
+    <script defer src="script.js"></script> <!-- Link to JavaScript -->
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>MOI Farms</h2>
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+        <ul>
+            <li><a href="#">📊 Dashboard</a></li>
+            <li><a href="invest.html">💰 Investments</a></li>
+            <li><a href="updates.html">🌱 Live Farm Updates</a></li>
+            <li><a href="profile.html">👤 Profile</a></li>
+            <li><a href="support.html">📞 Support</a></li>
+            <li><a href="login.html" class="logout">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <header>
+            <h1>Welcome to Your Dashboard</h1>
+            <div class="profile">
+                <img src="profile.jpg" alt="User" class="profile-pic">
+                <span>John Doe</span>
+            </div>
+        </header>
+
+        <!-- Investment Stats -->
+        <section class="stats">
+            <div class="card">
+                <h3>💰 Current Balance</h3>
+                <p>GHS 5,250</p>
+            </div>
+            <div class="card">
+                <h3>📈 Total ROI</h3>
+                <p>12.5%-40%</p>
+            </div>
+            <div class="card">
+                <h3>🌱 Active Investments</h3>
+                <p>3 Chicks</p>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts">
+            <div class="chart-container">
+                <h3>📊 Investment Growth</h3>
+                <canvas id="investmentChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>🌱 Farm Productivity</h3>
+                <canvas id="farmChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Investment Plans -->
+        <section class="investment-plans">
+            <h2>Available Investment Plans</h2>
+            <div class="plan">
+                <h3>Starter Plan</h3>
+                <p>Invest from GHS 150</p>
+                <p>ROI: 15%-40% per year </p>
+                <button class="btn-primary"onclick="window.location.href='invest.html'">Invest Now</button>
+            </div>
+            <div class="plan">
+                <h3>Growth Plan</h3>
+                <p>Invest from GHS 150</p>
+                <p>ROI: 15%-40% per cycle</p>
+                <button class="btn-primary"onclick="window.location.href='invest.html'">Invest Now</button>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
