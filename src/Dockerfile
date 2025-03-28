@@ -1,33 +1,18 @@
-# Use the official Python runtime image (pin version for stability)
-FROM python:3.13.0
+FROM python:3.12.3-slim
 
-# Set the working directory inside the container
+# Install PostgreSQL client
+RUN apt-get update && \
+    apt-get install -y postgresql-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY . /app
 WORKDIR /app
 
-# Set environment variables 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+RUN python3 -m venv /opt/venv
 
-# Install system dependencies (optional but useful for Pillow, psycopg2)
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+RUN /opt/venv/bin/pip install pip --upgrade && \
+    /opt/venv/bin/pip install -r requirements.txt && \
+    chmod +x entrypoint.sh
 
-# Copy only requirements.txt first for better caching
-COPY requirements.txt /app/
-
-# Install dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir gunicorn
-
-# Copy the rest of the project files (Django app)
-COPY . /app/
-
-# Create a non-root user and switch to it
-RUN useradd -m appuser
-USER appuser
-
-# Expose Django port (for documentation, actual port binding happens in compose)
-EXPOSE 8000
+CMD ["/app/entrypoint.sh"]
