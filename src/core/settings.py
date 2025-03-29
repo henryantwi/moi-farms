@@ -17,11 +17,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
+DEBUG = str(os.environ.get('DEBUG')) == "1"
 
 ALLOWED_HOSTS = ['138.68.189.14', 'localhost']
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+
+# ENV_ALLOWED_HOST = os.environ.get("ENV_ALLOWED_HOST")
+# if ENV_ALLOWED_HOST:
+#     ALLOWED_HOSTS = [ENV_ALLOWED_HOST,]
 
 # Application definition
 
@@ -91,7 +93,9 @@ DB_IS_AVAIL = all([
 ])
 DB_IGNORE_SSL = os.environ.get("DB_IGNORE_SSL") == "true"
 
-if DB_IS_AVAIL:
+POSTGRES_READY = os.environ.get("POSTGRES_READY") == "1"
+
+if DB_IS_AVAIL and POSTGRES_READY:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
