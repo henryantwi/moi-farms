@@ -28,3 +28,19 @@ tox/
 hypothesis/
 # Ignore the .coverage.* files (coverage reports)
 .coverage.*
+
+.gitignore
+.git
+.dockerignore
+.env.*
+.idea
+.vscode
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pot
+*.mo
