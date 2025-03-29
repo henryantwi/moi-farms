@@ -1,81 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - MOI Farms</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>MOI Farms</h2>
-            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-        </div>
-        <ul>
-            <li><a href="dashboard.html">📊 Dashboard</a></li>
-            <li><a href="invest.html">💰 Invest Now</a></li>
-            <li><a href="updates.html">🌱 Live Farm Updates</a></li>
-            <li><a href="profile.html">👤 Profile</a></li>
-            <li><a href="support.html" class="active">📞 Support</a></li>
-            <li><a href="login.html" class="logout">🚪 Logout</a></li>
-        </ul>
+{% block title %}Support{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Customer Support</h1>
+    <p>Need help? Contact us or check the FAQs below.</p>
+</header>
+
+<!-- Contact Form -->
+<section class="contact-form">
+    <h2>Send Us a Message</h2>
+    <form id="support-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="message">Your Message:</label>
+        <textarea id="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    <p id="form-response"></p>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq">
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <div class="faq-item">
+        <button class="faq-question">How do I invest?</button>
+        <div class="faq-answer">To invest, go to the "Invest Now" page, choose a plan, and follow the payment steps.</div>
     </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <header>
-            <h1>Customer Support</h1>
-            <p>Need help? Contact us or check the FAQs below.</p>
-        </header>
-
-        <!-- Contact Form -->
-        <section class="contact-form">
-            <h2>Send Us a Message</h2>
-            <form id="support-form">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" required>
-
-                <label for="email">Your Email:</label>
-                <input type="email" id="email" required>
-
-                <label for="message">Your Message:</label>
-                <textarea id="message" rows="5" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
-
-            <p id="form-response"></p>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq">
-            <h2>Frequently Asked Questions (FAQs)</h2>
-            <div class="faq-item">
-                <button class="faq-question">How do I invest?</button>
-                <div class="faq-answer">To invest, go to the "Invest Now" page, choose a plan, and follow the payment steps.</div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">What payment methods do you accept?</button>
-                <div class="faq-answer">We accept MTN MoMo and debit/credit card payments.</div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">How can I track my investment?</button>
-                <div class="faq-answer">You can track your investment through your dashboard under "Investment History".</div>
-            </div>
-        </section>
-
-        <!-- Contact Details -->
-        <section class="contact-info">
-            <h2>Contact Information</h2>
-            <p>📞 Phone: +233 24 123 4567</p>
-            <p>📧 Email: support@moifarms.com</p>
-            <p>📍 Address: Accra, Ghana</p>
-        </section>
+    <div class="faq-item">
+        <button class="faq-question">What payment methods do you accept?</button>
+        <div class="faq-answer">We accept MTN MoMo and debit/credit card payments.</div>
     </div>
+    <div class="faq-item">
+        <button class="faq-question">How can I track my investment?</button>
+        <div class="faq-answer">You can track your investment through your dashboard under "Investment History".</div>
+    </div>
+</section>
 
-</body>
-</html>
+<!-- Contact Details -->
+<section class="contact-info">
+    <h2>Contact Information</h2>
+    <p>📞 Phone: +233 24 123 4567</p>
+    <p>📧 Email: support@moifarms.com</p>
+    <p>📍 Address: Accra, Ghana</p>
+</section>
+{% endblock %}

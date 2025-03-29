@@ -29,10 +29,9 @@ services:
     restart: always
     env_file:
       - src/core/.env
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES      http://138.68.189.14:8001      http://138.68.189.14:8001_DB: dockerdc
+    # environment:
+    #   POSTGRES_USER: myuser
+    #   POSTGRES_PASSWORD: mysecretpassword
     expose:
       - "5432"  
     ports:

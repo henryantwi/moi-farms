@@ -1,64 +1,37 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - MOI Farms</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Link to your CSS -->
-    <script defer src="{% static 'script.js' %}"></script> <!-- Link to JavaScript -->
-</head>
-<body>
+{% extends "base.html" %}
 
-    <!-- Sidebar (Same as dashboard) -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>MOI Farms</h2>
-            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-        </div>
-        <ul>
-            <li><a href="dashboard.html">📊 Dashboard</a></li>
-            <li><a href="invest.html">💰 Investments</a></li>
-            <li><a href="updates.html">🌱 Live Farm Updates</a></li>
-            <li><a href="profile.html" class="active">👤 Profile</a></li>
-            <li><a href="support.html">📞 Support</a></li>
-            <li><a href="login.html" class="logout">🚪 Logout</a></li>
-        </ul>
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<header>
+    <h1>User Profile</h1>
+</header>
+
+<section class="profile-section">
+    <div class="profile-card">
+        <img src="{% static 'profile.jpg' %}" alt="User Profile Picture" class="profile-pic">
+        <h2 id="username">{{ user.get_full_name }}</h2>
+        <p id="user-email">{{ user.email }}</p>
+        <button class="edit-btn" onclick="enableEdit()">✏️ Edit Profile</button>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <header>
-            <h1>User Profile</h1>
-        </header>
+    <div class="profile-form">
+        <form id="profile-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" value="{{ user.get_full_name }}" disabled>
 
-        <section class="profile-section">
-            <div class="profile-card">
-                <img src="profile.jpg" alt="User Profile Picture" class="profile-pic">
-                <h2 id="username">John Doe</h2>
-                <p id="user-email">johndoe@example.com</p>
-                <button class="edit-btn" onclick="enableEdit()">✏️ Edit Profile</button>
-            </div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="{{ user.email }}" disabled>
 
-            <div class="profile-form">
-                <form id="profile-form">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" value="John Doe" disabled>
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" value="+233 50 123 4567" disabled>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" value="johndoe@example.com" disabled>
+            <label for="password">New Password:</label>
+            <input type="password" id="password" placeholder="Enter new password" disabled>
 
-                    <label for="phone">Phone Number:</label>
-                    <input type="text" id="phone" value="+233 50 123 4567" disabled>
-
-                    <label for="password">New Password:</label>
-                    <input type="password" id="password" placeholder="Enter new password" disabled>
-
-                    <button type="button" id="save-btn" onclick="saveProfile()" disabled>Save Changes</button>
-                </form>
-            </div>
-        </section>
+            <button type="button" id="save-btn" onclick="saveProfile()" disabled>Save Changes</button>
+        </form>
     </div>
-
-</body>
-</html>
+</section>
+{% endblock %}

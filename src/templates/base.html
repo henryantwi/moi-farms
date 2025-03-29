@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOI Farms - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block extra_css %}{% endblock %}
+    <script defer src="{% static 'script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</head>
+<body>
+    {% block full_content %}
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>MOI Farms</h2>
+                <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            </div>
+            <ul>
+                <li><a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="active"{% endif %}>📊 Dashboard</a></li>
+                <li><a href="{% url 'invest' %}" {% if request.resolver_match.url_name == 'invest' %}class="active"{% endif %}>💰 Invest Now</a></li>
+                {% comment %} <li><a href="{% url 'updates' %}" {% if request.resolver_match.url_name == 'updates' %}class="active"{% endif %}>🌱 Live Farm Updates</a></li> {% endcomment %}
+                <li><a href="{% url 'profile' %}" {% if request.resolver_match.url_name == 'profile' %}class="active"{% endif %}>👤 Profile</a></li>
+                {% comment %} <li><a href="{% url 'support' %}" {% if request.resolver_match.url_name == 'support' %}class="active"{% endif %}>📞 Support</a></li> {% endcomment %}
+                <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>ℹ️ About Us</a></li>
+                {% comment %} <li><a href="{% url 'logout' %}" class="logout">🚪 Logout</a></li> {% endcomment %}
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            {% block content %}{% endblock content %}
+        </div>
+    {% endblock full_content %}
+</body>
+</html>

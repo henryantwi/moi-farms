@@ -1,43 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Farm Updates - MOI Farms</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
-    <script defer src="script.js"></script> <!-- Link to JavaScript -->
-</head>
-<body>
+{% extends "base.html" %}
 
-    <!-- Sidebar (Same as dashboard) -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>MOI Farms</h2>
-            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-        </div>
-        <ul>
-            <li><a href="dashboard.html">📊 Dashboard</a></li>
-            <li><a href="invest.html">💰 Investments</a></li>
-            <li><a href="updates.html" class="active">🌱 Live Farm Updates</a></li>
-            <li><a href="profile.html">👤 Profile</a></li>
-            <li><a href="support.html">📞 Support</a></li>
-            <li><a href="login.html" class="logout">🚪 Logout</a></li>
-        </ul>
+{% block title %}Live Farm Updates{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Live Farm Updates</h1>
+    <p>Stay updated with the latest farm activities and progress.</p>
+</header>
+
+<section class="farm-updates">
+    <div id="updates-container">
+        <!-- Farm updates will be dynamically loaded here -->
     </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <header>
-            <h1>Live Farm Updates</h1>
-            <p>Stay updated with the latest farm activities and progress.</p>
-        </header>
-
-        <section class="farm-updates">
-            <div id="updates-container">
-                <!-- Farm updates will be dynamically loaded here -->
-            </div>
-        </section>
-    </div>
-
-</body>
-</html>
+</section>
+{% endblock %}
