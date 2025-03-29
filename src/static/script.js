@@ -1,17 +1,30 @@
+// Sidebar functionality
 function toggleSidebar() {
-    let sidebar = document.querySelector('.sidebar');
-    let mainContent = document.querySelector('.main-content');
-    
-    // Toggle collapsed class
+    const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('collapsed');
-
-    // Adjust main content margin when sidebar collapses
-    if (sidebar.classList.contains('collapsed')) {
-        mainContent.style.marginLeft = '70px';  // Smaller margin
-    } else {
-        mainContent.style.marginLeft = '250px'; // Default margin
-    }
+    
+    // Save state to localStorage
+    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
 }
+
+// Initialize sidebar state on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const wasCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+    
+    if (wasCollapsed) {
+        sidebar.classList.add('collapsed');
+    }
+    
+    // Add active class to current page link
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('.sidebar a');
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
 
 // Investment Growth Chart
 const investmentCtx = document.getElementById('investmentChart').getContext('2d');
@@ -62,11 +75,11 @@ function processInvestment() {
     // Save investment details (Simulated)
     const investmentHistory = document.getElementById('investment-history');
     const newRow = investmentHistory.insertRow();
-    newRow.innerHTML = `
-        <td>GHS ${amount}</td>
-        <td>${getInvestmentPlan(amount)}</td>
-        <td>${new Date().toLocaleDateString()}</td>
-        <td>✅ Completed</td>
+    newRow.innerHTML = `\
+        <td>GHS ${amount}</td>\
+        <td>${getInvestmentPlan(amount)}</td>\
+        <td>${new Date().toLocaleDateString()}</td>\
+        <td>✅ Completed</td>\
     `;
 }
 
@@ -104,80 +117,39 @@ function saveProfile() {
 }
 document.addEventListener("DOMContentLoaded", function() {
     const updatesContainer = document.getElementById("updates-container");
+    if (updatesContainer) {
+        // Example updates (In a real-world app, this would be fetched from a database)
+        const farmUpdates = [
+            {
+                title: "New Chickens Arrived!",
+                description: "We just received a new batch of 500 healthy chicks for our poultry expansion project.",
+                date: "2025-03-29",
+                type: "expansion"
+            },
+            {
+                title: "Weekly Health Check Complete",
+                description: "All chickens passed their weekly health inspection. Growth rates are above target.",
+                date: "2025-03-28",
+                type: "health"
+            },
+            {
+                title: "Farm Infrastructure Update",
+                description: "New automated feeding systems have been installed in Sections A and B.",
+                date: "2025-03-27",
+                type: "infrastructure"
+            }
+        ];
 
-    // Example updates (In a real-world app, this would be fetched from a database)
-    const farmUpdates = [
-        {
-            title: "New Chickens Arrived!",
-            description: "We just received a new batch of 500 healthy chicks ready for growth!",
-            image: "images/chickens.jpg",
-            timestamp: "March 10, 2025 - 10:30 AM"
-        },
-        {
-            title: "Harvesting Day!",
-            description: "Our maize fields are ready for harvesting. Workers are busy collecting fresh produce.",
-            image: "images/harvest.jpg",
-            timestamp: "March 9, 2025 - 4:00 PM"
-        },
-        {
-            title: "New Feed Supply",
-            description: "Fresh feed has been stocked up to ensure proper nutrition for the poultry.",
-            image: "images/feed.jpg",
-            timestamp: "March 8, 2025 - 12:15 PM"
-        }
-    ];
-
-    // Function to display updates
-    function loadUpdates() {
-        updatesContainer.innerHTML = ""; // Clear previous updates
-
+        // Render updates
         farmUpdates.forEach(update => {
-            let updateCard = document.createElement("div");
-            updateCard.classList.add("update-card");
-
-            updateCard.innerHTML = `
-                <img src="${update.image}" alt="${update.title}">
+            const updateElement = document.createElement('div');
+            updateElement.className = `update-card ${update.type}`;
+            updateElement.innerHTML = `
                 <h3>${update.title}</h3>
                 <p>${update.description}</p>
-                <p class="update-time">📅 ${update.timestamp}</p>
+                <small>${new Date(update.date).toLocaleDateString()}</small>
             `;
-
-            updatesContainer.appendChild(updateCard);
+            updatesContainer.appendChild(updateElement);
         });
     }
-
-    loadUpdates();
-});
-document.getElementById("createAccount").addEventListener("click", function() {
-    window.location.href = "register.html";
-});
-
-document.getElementById("forgotPassword").addEventListener("click", function() {
-    window.location.href = "password.html";
-});
-document.addEventListener("DOMContentLoaded", function () {
-    // Form Submission
-    document.getElementById("support-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent actual form submission
-
-        // Get input values
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-
-        if (name && email && message) {
-            document.getElementById("form-response").textContent = "✅ Your message has been sent!";
-            this.reset();
-        } else {
-            document.getElementById("form-response").textContent = "⚠️ Please fill in all fields.";
-        }
-    });
-
-    // FAQ Toggle
-    document.querySelectorAll(".faq-question").forEach(button => {
-        button.addEventListener("click", function () {
-            const answer = this.nextElementSibling;
-            answer.style.display = answer.style.display === "block" ? "none" : "block";
-        });
-    });
 });

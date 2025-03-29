@@ -19,13 +19,36 @@
                 <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
             </div>
             <ul>
-                <li><a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="active"{% endif %}>📊 Dashboard</a></li>
-                <li><a href="{% url 'invest' %}" {% if request.resolver_match.url_name == 'invest' %}class="active"{% endif %}>💰 Invest Now</a></li>
-                {% comment %} <li><a href="{% url 'updates' %}" {% if request.resolver_match.url_name == 'updates' %}class="active"{% endif %}>🌱 Live Farm Updates</a></li> {% endcomment %}
-                <li><a href="{% url 'profile' %}" {% if request.resolver_match.url_name == 'profile' %}class="active"{% endif %}>👤 Profile</a></li>
-                {% comment %} <li><a href="{% url 'support' %}" {% if request.resolver_match.url_name == 'support' %}class="active"{% endif %}>📞 Support</a></li> {% endcomment %}
-                <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>ℹ️ About Us</a></li>
-                {% comment %} <li><a href="{% url 'logout' %}" class="logout">🚪 Logout</a></li> {% endcomment %}
+                <li>
+                    <a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}class="active"{% endif %}>
+                        <span class="icon">📊</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'invest' %}" {% if request.resolver_match.url_name == 'invest' %}class="active"{% endif %}>
+                        <span class="icon">💰</span>
+                        <span class="text">Invest Now</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'profile' %}" {% if request.resolver_match.url_name == 'profile' %}class="active"{% endif %}>
+                        <span class="icon">👤</span>
+                        <span class="text">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>
+                        <span class="icon">ℹ️</span>
+                        <span class="text">About Us</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}" class="logout">
+                        <span class="icon">🚪</span>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
