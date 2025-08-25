@@ -12,3 +12,8 @@ def invest(request):
 
 def about(request):
     return render(request, "about.html")
+
+
+def login_view(request):
+    """Render the login page."""
+    return render(request, "login.html")
